@@ -33,9 +33,11 @@ int main() {
 
   // initialization of PID and its coefficients
   PID pid;
-  double Kp = 1.0;
-  double Ki = 1.0;
-  double Kd = 1.0;
+  double Kp = -0.2;   // -0.2
+  double Ki = -0.010; // -0.005
+  double Kd = -30.0;  // -30.0
+
+
   pid.Init(Kp, Ki, Kd);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -53,19 +55,21 @@ int main() {
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
-          /*
-          * TODO: Calcuate steering value here, remember the steering value is
-          * [-1, 1].
-          * NOTE: Feel free to play around with the throttle and speed. Maybe use
-          * another PID controller to control the speed!
-          */
+
+          //first update the errors
+          pid.UpdateError(cte);
+
+          // then calculate the new steering value
+          steer_value = pid.TotalError();
+
+          double throttle = 1.0; //the fun meter
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = throttle;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);

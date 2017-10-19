@@ -1,6 +1,7 @@
 #ifndef PID_H
 #define PID_H
 
+#include <vector>
 class PID {
 public:
   /*
@@ -16,6 +17,8 @@ public:
   double Kp;
   double Ki;
   double Kd;
+
+  std::vector<double> average_steering;
 
   /*
   * Constructor
