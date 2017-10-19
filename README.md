@@ -4,9 +4,9 @@ You can see it in action [here](https://youtu.be/oYYgaLZbULg).
 
 ## Effects of each of the PID parameters
 A PID controller is a simple way to control the steering of a vehicle across a predefined trajectory. It uses three parameters to calculate the required steering angle:
-* P, the proportional part of the equation. This part increases the steering more the further away the vehicle is from the trajectory, ie. the higher its cross track error (cte) is.
-* I, the integral part of the equation.  I is used to move the vehicle closer to the trajectory when both P and D combined cause the vehicle to steer across a tangential trajectory. It has also an influence on how fast the vehicle can approach its target trajectory.
-* D is the derivative part of the equation. Its calculated by the difference of the current cte and the previous cte. The derivative part is used to keep a vehicle that has found the trajectory close to it by reducing the rate of change in the cte.
+* P, the proportional part of the equation. This component increases the steering more the further away the vehicle is from the trajectory, i.e. the higher its cross track error (CTE) is.
+* I, the integral part of the equation. The integral is used to move the vehicle closer to the trajectory when both P and D combined let the car steer across a tangential path. It also influences how fast the car can approach its target trajectory.
+* D is the derivative part of the equation. Its calculated by the difference of the current CTE and the previous CTE. The derivative component is used to keep a vehicle that has found the trajectory close to it by reducing the rate of change in the CTE.
 
 ## The final hyper parameters
 For my final results i used:
@@ -14,11 +14,10 @@ For my final results i used:
 * I: -0.01
 * D: -30.0
 
-I arrived by these values by starting at some values that successfully allowed the vehicle to complete a full round in the simulator (-0.25, 0.0 and -0.75) and then slowly altered them to make the round smoother and more reliable.
-Using the final parameters the car is able to complete the course on full throttle.
-This is unfortunately only possible on a strong computer, as i learned when recording the video, which required me to reduce the throttle to 50% .
-This is due to lag causes by the recording and the program not being able to calculate the steering angle as often, which causes the vehicle to steer wildly across the course.
-
+I arrived at these values by starting at some values that successfully allowed the vehicle to complete a full round in the simulator (-0.25, 0.0 and -0.75) and then slowly altered them to make the round smoother and more reliable.
+Using the final parameters, the car can complete the course on full throttle.
+Driving on full throttle is unfortunately only possible on a strong computer, as I learned when recording the video, which required me to reduce the throttle to 50%.
+Aforementioned is due to lag caused by the recording and the program not being able to calculate the steering angle as often, which causes the vehicle to steer wildly across the course.
 
 ## Dependencies
 
