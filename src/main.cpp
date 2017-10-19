@@ -62,7 +62,7 @@ int main() {
           // then calculate the new steering value
           steer_value = pid.TotalError();
 
-          double throttle = 1.0; //the fun meter
+          double throttle = 0.5; //the fun meter
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
